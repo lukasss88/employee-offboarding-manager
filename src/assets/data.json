@@ -1,0 +1,172 @@
+[
+  {
+    "id": "emp001",
+    "name": "John Doe",
+    "department": "Engineering",
+    "status": "ACTIVE",
+    "email": "john.doe@example.com",
+    "equipments": [
+      {
+        "id": "eq001",
+        "name": "MacBook Air"
+      },
+      {
+        "id": "eq002",
+        "name": "Magic Mouse"
+      }
+    ]
+  },
+  {
+    "id": "emp002",
+    "name": "Jane Smith",
+    "department": "Human Resources",
+    "status": "ACTIVE",
+    "email": "jane.smith@example.com",
+    "equipments": [
+      {
+        "id": "eq003",
+        "name": "MacBook Air"
+      },
+      {
+        "id": "eq004",
+        "name": "Magic Mouse"
+      }
+    ]
+  },
+  {
+    "id": "emp003",
+    "name": "Michael Brown",
+    "department": "Sales",
+    "status": "OFFBOARDED",
+    "email": "michael.brown@example.com",
+    "equipments": [
+      {
+        "id": "eq005",
+        "name": "Dell XPS 13"
+      },
+      {
+        "id": "eq006",
+        "name": "Logitech MX Master"
+      }
+    ]
+  },
+  {
+    "id": "emp004",
+    "name": "Emily Johnson",
+    "department": "Marketing",
+    "status": "ACTIVE",
+    "email": "emily.johnson@example.com",
+    "equipments": [
+      {
+        "id": "eq007",
+        "name": "MacBook Pro"
+      },
+      {
+        "id": "eq008",
+        "name": "Magic Keyboard"
+      }
+    ]
+  },
+  {
+    "id": "emp005",
+    "name": "David Lee",
+    "department": "Finance",
+    "status": "ACTIVE",
+    "email": "david.lee@example.com",
+    "equipments": [
+      {
+        "id": "eq009",
+        "name": "MacBook Air"
+      },
+      {
+        "id": "eq010",
+        "name": "Magic Mouse"
+      }
+    ]
+  },
+  {
+    "id": "emp006",
+    "name": "Sarah Walker",
+    "department": "IT",
+    "status": "OFFBOARDED",
+    "email": "sarah.walker@example.com",
+    "equipments": [
+      {
+        "id": "eq011",
+        "name": "ThinkPad T14"
+      },
+      {
+        "id": "eq012",
+        "name": "Lenovo Wireless Mouse"
+      }
+    ]
+  },
+  {
+    "id": "emp007",
+    "name": "Robert Davis",
+    "department": "Operations",
+    "status": "ACTIVE",
+    "email": "robert.davis@example.com",
+    "equipments": [
+      {
+        "id": "eq013",
+        "name": "MacBook Air"
+      },
+      {
+        "id": "eq014",
+        "name": "Magic Mouse"
+      }
+    ]
+  },
+  {
+    "id": "emp008",
+    "name": "Laura Martinez",
+    "department": "Design",
+    "status": "ACTIVE",
+    "email": "laura.martinez@example.com",
+    "equipments": [
+      {
+        "id": "eq015",
+        "name": "MacBook Pro"
+      },
+      {
+        "id": "eq016",
+        "name": "Apple Pencil"
+      }
+    ]
+  },
+  {
+    "id": "emp009",
+    "name": "Daniel Wilson",
+    "department": "Product",
+    "status": "OFFBOARDED",
+    "email": "daniel.wilson@example.com",
+    "equipments": [
+      {
+        "id": "eq017",
+        "name": "Dell Latitude"
+      },
+      {
+        "id": "eq018",
+        "name": "Logitech MX Anywhere"
+      }
+    ]
+  },
+  {
+    "id": "emp010",
+    "name": "Olivia Taylor",
+    "department": "Customer Support",
+    "status": "ACTIVE",
+    "email": "olivia.taylor@example.com",
+    "equipments": [
+      {
+        "id": "eq019",
+        "name": "MacBook Air"
+      },
+      {
+        "id": "eq020",
+        "name": "Magic Mouse"
+      }
+    ]
+  }
+]

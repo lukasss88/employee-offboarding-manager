@@ -1,0 +1,11 @@
+<ul class="employee-list">
+  @for (employee of employees(); track employee.id) {
+    <li class="employee-list-item">
+      <div class="employee-name">{{ employee.name }}</div>
+      <div class="employee-role">{{ employee.name }}</div>
+      <div class="employee-department">{{ employee.department }}</div>
+    </li>
+  } @empty {
+    <li aria-hidden="true" class="empty-placeholder">No employees found</li>
+  }
+</ul>

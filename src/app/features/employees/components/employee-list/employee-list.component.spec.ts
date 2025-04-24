@@ -1,15 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EmployeeListComponent } from './employee-list.component';
 import { mockEmployees } from '../../../../shared/testing/test-data/mock-employees';
+import { Router } from '@angular/router';
 
 describe('EmployeeListComponent', () => {
   let component: EmployeeListComponent;
   let fixture: ComponentFixture<EmployeeListComponent>;
+  let routerSpy: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
+    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+
     await TestBed.configureTestingModule({
       imports: [EmployeeListComponent],
+      providers: [{ provide: Router, useValue: routerSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EmployeeListComponent);
@@ -37,8 +41,19 @@ describe('EmployeeListComponent', () => {
   it('shhould show empty placheholder when no employees', () => {
     fixture.componentRef.setInput('employees', []);
     fixture.detectChanges();
-    const employeeList =
-      fixture.nativeElement.querySelector('tr.mat-mdc-no-data-row');
+    const employeeList = fixture.nativeElement.querySelector(
+      'tr.mat-mdc-no-data-row'
+    );
     expect(employeeList.textContent).toContain('No employees found');
+  });
+
+  it('should navigate to employee details when row is clicked', () => {
+    const firstRow = fixture.nativeElement.querySelector('tr.mat-mdc-row');
+    firstRow.click();
+
+    expect(routerSpy.navigate).toHaveBeenCalledWith([
+      '/employees',
+      mockEmployees[0].id,
+    ]);
   });
 });

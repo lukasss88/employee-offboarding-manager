@@ -9,5 +9,12 @@ export const routes: Routes = [
         './features/employees/pages/employees-page/employees-page.component'
       ).then((m) => m.EmployeesPageComponent),
   },
+  {
+    path: 'employees/:id',
+    loadComponent: () =>
+      import(
+        './features/employees/pages/employee-details-page/employee-details-page.component'
+      ).then((m) => m.EmployeeDetailsPageComponent),
+  },
   { path: '**', redirectTo: 'employees' },
 ];

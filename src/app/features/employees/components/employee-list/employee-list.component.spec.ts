@@ -19,16 +19,26 @@ describe('EmployeeListComponent', () => {
   });
 
   it('should show employee list', () => {
-    const employeeList = fixture.nativeElement.querySelectorAll('li.employee-list-item');
+    const employeeList =
+      fixture.nativeElement.querySelectorAll('tr.mat-mdc-row');
     expect(employeeList.length).toBe(mockEmployees.length);
-    expect(employeeList[0].textContent).toContain(mockEmployees[0].name);
-    expect(employeeList[1].textContent).toContain(mockEmployees[1].name);
+
+    const firstEmployeeName = fixture.nativeElement.querySelector(
+      'tr.mat-mdc-row td.mat-column-name'
+    );
+    const secondEmployeeName = fixture.nativeElement.querySelectorAll(
+      'tr.mat-mdc-row td.mat-column-name'
+    )[1];
+
+    expect(firstEmployeeName.textContent).toContain(mockEmployees[0].name);
+    expect(secondEmployeeName.textContent).toContain(mockEmployees[1].name);
   });
 
   it('shhould show empty placheholder when no employees', () => {
     fixture.componentRef.setInput('employees', []);
     fixture.detectChanges();
-    const employeeList = fixture.nativeElement.querySelector('.empty-placeholder');
+    const employeeList =
+      fixture.nativeElement.querySelector('tr.mat-mdc-no-data-row');
     expect(employeeList.textContent).toContain('No employees found');
   });
 });

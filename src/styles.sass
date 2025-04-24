@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat
+
+html, body
+  height: 100%
+  margin: 0
+  font-family: Roboto, "Helvetica Neue", sans-serif
+
+.mat-typography
+  font-family: Roboto, "Helvetica Neue", sans-serif
+  line-height: 1.5
+
+// Add Material theme classes to the body
+body
+  @include mat.core()
+  margin: 0
+  background-color: #fafafa  // Material Design background color

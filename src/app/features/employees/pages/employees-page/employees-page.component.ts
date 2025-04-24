@@ -1,16 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { EmployeeService } from '../../../../core/services/employee.service';
 import { EmployeeListComponent } from '../../components/employee-list/employee-list.component';
-import { AsyncPipe } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import { EmployeeStateService } from '../../../../core/services/employee-state.service';
 
 @Component({
   selector: 'app-employees-page',
-  imports: [EmployeeListComponent, AsyncPipe, MatTabsModule],
+  imports: [EmployeeListComponent, MatTabsModule],
   templateUrl: './employees-page.component.html',
   styleUrls: ['./employees-page.component.sass'],
 })
 export class EmployeesPageComponent {
-  private employeeService = inject(EmployeeService);
-  employees$ = this.employeeService.getEmployees();
+  private state = inject(EmployeeStateService);
+  employees = this.state.employees();
 }

@@ -2,11 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_URL } from '../tokens/api.token';
 import { Employee } from '../models/employee';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class EmployeeService {
   private httpClient = inject(HttpClient);
   private apiUrl = inject(API_URL);

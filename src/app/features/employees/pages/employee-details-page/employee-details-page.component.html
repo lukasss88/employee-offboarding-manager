@@ -1,1 +1,11 @@
-<p>employee-details-page works!</p>
+<div class="employee-details">
+  <p class="name">{{ employee?.name }}</p>
+  <p class="department">{{ employee?.department }}</p>
+  <p class="email">{{ employee?.email }}</p>
+
+  <ul class="equipments">
+    @for (item of employee?.equipments; track $index) {
+      <li>{{ item }}</li>
+    }
+  </ul>
+</div>

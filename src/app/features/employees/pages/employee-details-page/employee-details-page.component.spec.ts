@@ -17,7 +17,6 @@ describe('EmployeeDetailsPageComponent', () => {
     setCurrentEmployee: jasmine.Spy;
     offBoardEmployee: jasmine.Spy;
     currentEmployee: any;
-    isLoading: any;
   };
   let mockSnackbarService: {
     showSuccess: jasmine.Spy;
@@ -32,7 +31,6 @@ describe('EmployeeDetailsPageComponent', () => {
         .createSpy('offBoardEmployee')
         .and.returnValue(of(mockEmployees[0])),
       currentEmployee: signal(mockEmployees[0]),
-      isLoading: signal(false),
     };
 
     mockSnackbarService = {
@@ -93,17 +91,6 @@ describe('EmployeeDetailsPageComponent', () => {
     expect(mockEmployeeStateService.setCurrentEmployee).toHaveBeenCalledWith(
       mockEmployees[0].id
     );
-  });
-
-  it('should show loading state when isLoading is true', () => {
-    mockEmployeeStateService.isLoading.set(true);
-    fixture.detectChanges();
-
-    // TODO: fix selector
-    const loadingElement = fixture.nativeElement.querySelector(
-      'div.page-container > div'
-    );
-    expect(loadingElement.textContent).toContain('Loading...');
   });
 
   it('should redirect to employees list after successful offboarding', () => {

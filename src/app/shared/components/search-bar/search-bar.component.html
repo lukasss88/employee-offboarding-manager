@@ -1,0 +1,11 @@
+<mat-form-field class="search-form-field" appearance="outline">
+  <mat-label>Search</mat-label>
+  <input
+    matInput
+    class="search-input"
+    type="text"
+    [(ngModel)]="term"
+    (ngModelChange)="termChange.emit($event)"
+  />
+  <mat-icon matSuffix class="search-icon">search</mat-icon>
+</mat-form-field>

@@ -1,7 +1,4 @@
 <div class="page-container">
-  @if(isLoading()) {
-    <div>Loading...</div>
-  }
   @if (employee(); as employee) {
     <app-employee-details [employee]="employee" (offBoardEmployee)="handleOffBoardEmployee($event)"></app-employee-details>
   }

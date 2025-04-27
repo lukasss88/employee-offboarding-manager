@@ -11,12 +11,14 @@ import { DataService } from './data/data.service';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([httpErrorInterceptor, spinnerInterceptor])),
+    provideHttpClient(
+      withInterceptors([httpErrorInterceptor, spinnerInterceptor])
+    ),
     importProvidersFrom([
       HttpClientInMemoryWebApiModule.forRoot(DataService, {
         dataEncapsulation: false,
-        passThruUnknownUrl: true  // optional: let real HTTP calls pass through
-      })
+        passThruUnknownUrl: true,
+      }),
     ]),
     provideAnimations(),
   ],

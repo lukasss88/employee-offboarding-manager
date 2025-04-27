@@ -1,16 +1,21 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { Employee, EmployeeId } from '../../../../core/models/employee';
 import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [MatTableModule],
+  imports: [MatTableModule, CommonModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListComponent {
-
   displayedColumns: string[] = [
     'name',
     'email',
@@ -24,6 +29,4 @@ export class EmployeeListComponent {
   onRowClick(employeeId: string): void {
     this.rowClick.emit(employeeId);
   }
-
-
 }

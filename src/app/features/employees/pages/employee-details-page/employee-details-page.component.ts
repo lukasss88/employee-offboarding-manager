@@ -28,7 +28,6 @@ export class EmployeeDetailsPageComponent implements OnInit {
   state = inject(EmployeeStateService);
   private snackbarService = inject(SnackbarService);
   employee = this.state.currentEmployee;
-  isLoading = this.state.isLoading;
 
   ngOnInit(): void {
     const employeeId = this.route.snapshot.params['id'];

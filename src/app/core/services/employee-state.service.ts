@@ -1,5 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { Employee } from '../models/employee';
+import { Employee, EmployeeOffboardRequest } from '../models/employee';
 import { EmployeeService } from './employee.service';
 import { tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -51,6 +51,21 @@ export class EmployeeStateService {
       currentEmployee: employee,
       pendingEmployeeId: null,
     }));
+  }
+
+  offBoardEmployee(id: string, request: EmployeeOffboardRequest) {
+    this.setLoading(true);
+    return this.employeeService.offBoardEmployee(id, request).pipe(
+      tap((employee) => this.state.update((state) => ({
+          ...state,
+          employees: state.employees.map((e) =>
+            e.id === employee.id ? employee : e
+          ),
+          currentEmployee: employee,
+          isLoading: false,
+        }))
+      )
+    );
   }
 
   setLoading(isLoading: boolean) {

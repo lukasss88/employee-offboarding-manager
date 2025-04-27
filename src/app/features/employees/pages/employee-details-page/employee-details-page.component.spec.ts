@@ -1,31 +1,43 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, provideRouter, Router } from '@angular/router';
 import { EmployeeDetailsPageComponent } from './employee-details-page.component';
 import { mockEmployees } from '../../../../shared/testing/test-data/mock-employees';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
-import { computed, signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { EmployeeDetailsComponent } from '../../components/employee-details/employee-details.component';
+import { of } from 'rxjs';
+import { EmployeeOffboardEvent } from '../../../../core/models/employee';
 
 describe('EmployeeDetailsPageComponent', () => {
   let component: EmployeeDetailsPageComponent;
   let fixture: ComponentFixture<EmployeeDetailsPageComponent>;
   let mockEmployeeStateService: {
     setCurrentEmployee: jasmine.Spy;
+    offBoardEmployee: jasmine.Spy;
     currentEmployee: any;
     isLoading: any;
   };
+  let router: Router;
+  let navigateSpy: jasmine.Spy;
 
   beforeEach(async () => {
     mockEmployeeStateService = {
       setCurrentEmployee: jasmine.createSpy('setCurrentEmployee'),
+      offBoardEmployee: jasmine
+        .createSpy('offBoardEmployee')
+        .and.returnValue(of(mockEmployees[0])),
       currentEmployee: signal(mockEmployees[0]),
       isLoading: signal(false),
     };
 
     await TestBed.configureTestingModule({
-      imports: [EmployeeDetailsPageComponent, EmployeeDetailsComponent],
+      imports: [
+        EmployeeDetailsPageComponent,
+        EmployeeDetailsComponent,
+      ],
       providers: [
+        provideRouter([]),
         {
           provide: ActivatedRoute,
           useValue: {
@@ -40,6 +52,8 @@ describe('EmployeeDetailsPageComponent', () => {
 
     fixture = TestBed.createComponent(EmployeeDetailsPageComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
+    navigateSpy = spyOn(router, 'navigate');
     fixture.detectChanges();
   });
 
@@ -84,5 +98,30 @@ describe('EmployeeDetailsPageComponent', () => {
       'div.page-container > div'
     );
     expect(loadingElement.textContent).toContain('Loading...');
+  });
+
+  it('should redirect to employees list after successful offboarding', () => {
+    const offboardEvent: EmployeeOffboardEvent = {
+      id: mockEmployees[0].id,
+      request: {
+        address: {
+          streetLine1: '123 Test St',
+          country: 'Test Country',
+          postalCode: '12345',
+          receiver: 'Test Receiver',
+        },
+        notes: 'Offboarding notes',
+        phone: '123-456-7890',
+        email: 'test@example.com',
+      },
+    };
+
+    component.handleOffBoardEmployee(offboardEvent);
+
+    expect(mockEmployeeStateService.offBoardEmployee).toHaveBeenCalledWith(
+      offboardEvent.id,
+      offboardEvent.request
+    );
+    expect(navigateSpy).toHaveBeenCalledWith(['/employees']);
   });
 });

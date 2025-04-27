@@ -130,16 +130,20 @@ export class DataService implements InMemoryDbService {
 
   post(reqInfo: RequestInfo): Observable<any> | undefined {
     // Check if this is an offboard request for an employee
-    // Changed from incorrect '/users/[id]/offboard' pattern to match the actual API endpoint
-    const employeeUrl = reqInfo.resourceUrl.endsWith('employees');
-    if (employeeUrl && reqInfo.id && reqInfo.method === 'post') {
-      // This is a request to offboard an employee with ID
-      const id = reqInfo.id;
+    const isOffboardEndpoint = reqInfo.url.endsWith('/offboard');
+
+    if (isOffboardEndpoint && reqInfo.method === 'post') {
+      // Extract the employee ID from the URL
+      // URL format will be 'api/employees/{id}/offboard'
+      const urlParts = reqInfo.url.split('/');
+      const employeeId = urlParts[urlParts.length - 2];
+
       const body = reqInfo.utils.getJsonBody(reqInfo.req) as any;
 
       // Find & update the employee in the collection
       const employees = reqInfo.collection as any[];
-      const employee = employees.find((e) => e.id === id);
+      const employee = employees.find((e) => e.id === employeeId);
+
       if (employee) {
         // Update employee status and save offboard info
         employee.status = 'OFFBOARDED';

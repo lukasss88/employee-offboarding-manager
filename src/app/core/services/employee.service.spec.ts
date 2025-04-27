@@ -83,7 +83,7 @@ describe('EmployeeService', () => {
         });
 
       const req = httpTestingController.expectOne(
-        `api/employees/${employeeId}`
+        `api/employees/${employeeId}/offboard`
       );
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockOffboardRequest);
@@ -100,7 +100,7 @@ describe('EmployeeService', () => {
       });
 
       const req = httpTestingController.expectOne(
-        `api/employees/${employeeId}`
+        `api/employees/${employeeId}/offboard`
       );
       req.flush('Server error', {
         status: 500,

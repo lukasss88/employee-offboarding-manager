@@ -23,11 +23,7 @@ export class EmployeeService {
     id: EmployeeId,
     request: EmployeeOffboardRequest
   ): Observable<Employee> {
-    return this.httpClient.post<Employee>(`${this.apiUrl}/${id}`, request).pipe(
-      map((response) => {
-        console.log('Offboarding response:', response);
-        return response;
-      })
-    );
+    return this.httpClient
+      .post<Employee>(`${this.apiUrl}/${id}/offboard`, request)
   }
 }

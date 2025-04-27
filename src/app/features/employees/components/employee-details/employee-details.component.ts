@@ -31,7 +31,6 @@ export class EmployeeDetailsComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Offboarding request:', result);
         this.offBoardEmployee.emit({
           id: this.employee().id,
           request: result,

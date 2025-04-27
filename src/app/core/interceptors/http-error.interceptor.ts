@@ -14,7 +14,6 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
         errorMessage = `Server Error: ${error.status} - Http failure response for ${error.url}: ${error.status} ${error.statusText}`;
       }
 
-      // Return a new error with our formatted message
       return throwError(() => errorMessage);
     })
   );

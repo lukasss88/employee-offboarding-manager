@@ -78,7 +78,7 @@ describe('EmployeeDetailsComponent', () => {
   describe('when offboard button is clicked', () => {
     it('should open the offboard modal', () => {
       const offboardButton = fixture.debugElement.query(
-        By.css('.offboard-button')
+        By.css('#offboard-button')
       );
       offboardButton.nativeElement.click();
 
@@ -102,7 +102,7 @@ describe('EmployeeDetailsComponent', () => {
       const offboardSpy = spyOn(component.offBoardEmployee, 'emit');
 
       const offboardButton = fixture.debugElement.query(
-        By.css('.offboard-button')
+        By.css('#offboard-button')
       );
       offboardButton.nativeElement.click();
 
@@ -117,7 +117,7 @@ describe('EmployeeDetailsComponent', () => {
       const offboardSpy = spyOn(component.offBoardEmployee, 'emit');
 
       const offboardButton = fixture.debugElement.query(
-        By.css('.offboard-button')
+        By.css('#offboard-button')
       );
       offboardButton.nativeElement.click();
 

@@ -16,14 +16,17 @@ export class EmployeeService {
   private apiUrl = inject(API_URL);
 
   getEmployees(): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>(this.apiUrl);
+    return this.httpClient
+      .get<Employee[]>(this.apiUrl)
   }
 
   offBoardEmployee(
     id: EmployeeId,
     request: EmployeeOffboardRequest
   ): Observable<Employee> {
-    return this.httpClient
-      .post<Employee>(`${this.apiUrl}/${id}/offboard`, request)
+    return this.httpClient.post<Employee>(
+      `${this.apiUrl}/${id}/offboard`,
+      request
+    );
   }
 }

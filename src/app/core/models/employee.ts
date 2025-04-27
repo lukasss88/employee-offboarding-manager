@@ -13,3 +13,17 @@ export interface Employee {
   email: string;
   equipments: Equipment[];
 }
+
+export interface EmployeeOffboardRequest {
+  address: OffboardAddress;
+  notes: string;
+  phone: string;
+  email: string;
+}
+
+export interface OffboardAddress {
+  streetLine1: string;
+  country: string;
+  postalCode: string;
+  receiver: string;
+}

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { EmployeeListComponent } from '../../components/employee-list/employee-list.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   imports: [EmployeeListComponent, MatTabsModule],
   templateUrl: './employees-page.component.html',
   styleUrls: ['./employees-page.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesPageComponent {
   private state = inject(EmployeeStateService);

@@ -1,10 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { Employee } from '../../../../core/models/employee';
+import { Employee, EmployeeId, EmployeeOffboardRequest } from '../../../../core/models/employee';
+import { MatDialog } from '@angular/material/dialog';
+import { OffboardingModalComponent } from '../offboarding-modal/offboarding-modal.component';
+
+export interface EmployeeOffboardEvent {
+  id: EmployeeId;
+  request: EmployeeOffboardRequest;
+}
 
 @Component({
   selector: 'app-employee-details',
@@ -17,7 +24,26 @@ import { Employee } from '../../../../core/models/employee';
   ],
   templateUrl: './employee-details.component.html',
   styleUrl: './employee-details.component.sass',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeDetailsComponent {
+  readonly dialog = inject(MatDialog);
   employee = input.required<Employee>();
+  offBoardEmployee = output<EmployeeOffboardEvent>();
+
+  openModal() {
+    const dialogRef = this.dialog.open(OffboardingModalComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Offboarding request:', result);
+        this.offBoardEmployee.emit({
+          id: this.employee().id,
+          request: result,
+        });
+      }
+    });
+
+
+  }
 }

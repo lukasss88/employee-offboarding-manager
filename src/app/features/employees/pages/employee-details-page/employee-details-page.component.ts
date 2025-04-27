@@ -9,14 +9,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
 import { CommonModule } from '@angular/common';
 import { EmployeeDetailsComponent } from '../../components/employee-details/employee-details.component';
-import {
-  EmployeeOffboardEvent,
-} from '../../../../core/models/employee';
+import { EmployeeOffboardEvent } from '../../../../core/models/employee';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-employee-details-page',
-  imports: [CommonModule, EmployeeDetailsComponent],
+  imports: [CommonModule, EmployeeDetailsComponent, MatSnackBarModule],
   templateUrl: './employee-details-page.component.html',
   styleUrl: './employee-details-page.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,6 +26,7 @@ export class EmployeeDetailsPageComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   router: Router = inject(Router);
   state = inject(EmployeeStateService);
+  private snackbarService = inject(SnackbarService);
   employee = this.state.currentEmployee;
   isLoading = this.state.isLoading;
 
@@ -40,6 +41,7 @@ export class EmployeeDetailsPageComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
+          this.snackbarService.showSuccess('Employee successfully offboarded');
           this.router.navigate(['/employees']);
         },
       });

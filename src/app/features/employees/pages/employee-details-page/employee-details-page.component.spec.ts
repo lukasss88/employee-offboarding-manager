@@ -8,6 +8,7 @@ import { By } from '@angular/platform-browser';
 import { EmployeeDetailsComponent } from '../../components/employee-details/employee-details.component';
 import { of } from 'rxjs';
 import { EmployeeOffboardEvent } from '../../../../core/models/employee';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 describe('EmployeeDetailsPageComponent', () => {
   let component: EmployeeDetailsPageComponent;
@@ -17,6 +18,9 @@ describe('EmployeeDetailsPageComponent', () => {
     offBoardEmployee: jasmine.Spy;
     currentEmployee: any;
     isLoading: any;
+  };
+  let mockSnackbarService: {
+    showSuccess: jasmine.Spy;
   };
   let router: Router;
   let navigateSpy: jasmine.Spy;
@@ -31,11 +35,12 @@ describe('EmployeeDetailsPageComponent', () => {
       isLoading: signal(false),
     };
 
+    mockSnackbarService = {
+      showSuccess: jasmine.createSpy('showSuccess'),
+    };
+
     await TestBed.configureTestingModule({
-      imports: [
-        EmployeeDetailsPageComponent,
-        EmployeeDetailsComponent,
-      ],
+      imports: [EmployeeDetailsPageComponent, EmployeeDetailsComponent],
       providers: [
         provideRouter([]),
         {
@@ -47,6 +52,7 @@ describe('EmployeeDetailsPageComponent', () => {
           },
         },
         { provide: EmployeeStateService, useValue: mockEmployeeStateService },
+        { provide: SnackbarService, useValue: mockSnackbarService },
       ],
     }).compileComponents();
 
@@ -121,6 +127,9 @@ describe('EmployeeDetailsPageComponent', () => {
     expect(mockEmployeeStateService.offBoardEmployee).toHaveBeenCalledWith(
       offboardEvent.id,
       offboardEvent.request
+    );
+    expect(mockSnackbarService.showSuccess).toHaveBeenCalledWith(
+      'Employee successfully offboarded'
     );
     expect(navigateSpy).toHaveBeenCalledWith(['/employees']);
   });

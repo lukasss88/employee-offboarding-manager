@@ -27,3 +27,8 @@ export interface OffboardAddress {
   postalCode: string;
   receiver: string;
 }
+
+export interface EmployeeOffboardEvent {
+  id: EmployeeId;
+  request: EmployeeOffboardRequest;
+}

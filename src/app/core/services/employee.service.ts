@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_URL } from '../tokens/api.token';
-import { Employee } from '../models/employee';
+import {
+  Employee,
+  EmployeeId,
+  EmployeeOffboardRequest,
+} from '../models/employee';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -13,5 +17,17 @@ export class EmployeeService {
 
   getEmployees(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(this.apiUrl);
+  }
+
+  offBoardEmployee(
+    id: EmployeeId,
+    request: EmployeeOffboardRequest
+  ): Observable<Employee> {
+    return this.httpClient.post<Employee>(`${this.apiUrl}/${id}`, request).pipe(
+      map((response) => {
+        console.log('Offboarding response:', response);
+        return response;
+      })
+    );
   }
 }

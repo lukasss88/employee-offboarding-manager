@@ -4,14 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { Employee, EmployeeId, EmployeeOffboardRequest } from '../../../../core/models/employee';
+import { Employee, EmployeeId, EmployeeOffboardEvent, EmployeeOffboardRequest } from '../../../../core/models/employee';
 import { MatDialog } from '@angular/material/dialog';
 import { OffboardingModalComponent } from '../offboarding-modal/offboarding-modal.component';
-
-export interface EmployeeOffboardEvent {
-  id: EmployeeId;
-  request: EmployeeOffboardRequest;
-}
 
 @Component({
   selector: 'app-employee-details',

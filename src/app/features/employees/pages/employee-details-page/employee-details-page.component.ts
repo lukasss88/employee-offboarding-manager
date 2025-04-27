@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
 import { CommonModule } from '@angular/common';
 import { EmployeeDetailsComponent } from "../../components/employee-details/employee-details.component";
+import { EmployeeOffboardEvent, EmployeeOffboardRequest } from '../../../../core/models/employee';
 
 @Component({
   selector: 'app-employee-details-page',
@@ -25,7 +26,7 @@ export class EmployeeDetailsPageComponent implements OnInit {
     this.state.setCurrentEmployee(employeeId);
   }
 
-  handleOffBoardEmployee(event: { id: string; request: any }): void {
+  handleOffBoardEmployee(event: EmployeeOffboardEvent): void {
     console.log('Offboarding request:', event.request);
   }
 }

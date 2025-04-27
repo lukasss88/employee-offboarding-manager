@@ -4,7 +4,9 @@ import { API_URL } from '../tokens/api.token';
 import { Employee } from '../models/employee';
 import { Observable, map } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class EmployeeService {
   private httpClient = inject(HttpClient);
   private apiUrl = inject(API_URL);

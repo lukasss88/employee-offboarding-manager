@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { EmployeeListComponent } from '../../components/employee-list/employee-list.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees-page',
@@ -11,5 +12,11 @@ import { EmployeeStateService } from '../../../../core/services/employee-state.s
 })
 export class EmployeesPageComponent {
   private state = inject(EmployeeStateService);
-  employees = this.state.employees();
+  private router = inject(Router);
+
+  employees = this.state.employees;
+
+  handleRowClick(employeeId: string): void {
+    this.router.navigate(['/employees', employeeId]);
+  }
 }

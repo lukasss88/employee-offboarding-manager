@@ -27,7 +27,7 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
-      (click)="navigateToDetails(row.id)"
+      (click)="onRowClick(row.id)"
       style="cursor: pointer"></tr>
   
   <tr class="mat-row" *matNoDataRow>

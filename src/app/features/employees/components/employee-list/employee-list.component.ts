@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { Employee } from '../../../../core/models/employee';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { Employee, EmployeeId } from '../../../../core/models/employee';
 import { MatTableModule } from '@angular/material/table';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -11,6 +10,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListComponent {
+
   displayedColumns: string[] = [
     'name',
     'email',
@@ -19,10 +19,11 @@ export class EmployeeListComponent {
     'status',
   ];
   employees = input.required<Employee[]>();
+  rowClick = output<EmployeeId>();
 
-  constructor(private router: Router) {}
-
-  navigateToDetails(employeeId: string): void {
-    this.router.navigate(['/employees', employeeId]);
+  onRowClick(employeeId: string): void {
+    this.rowClick.emit(employeeId);
   }
+
+
 }

@@ -43,5 +43,11 @@ describe('EmployeeStateService', () => {
         new Error('Employee with id 999 not found')
       );
     });
+
+    it('should set pendingEmployeeId when loading', () => {
+      service.setLoading(true);
+      service.setCurrentEmployee('1');
+      expect(service.pendingEmployeeId()).toEqual('1');
+    });
   });
 });

@@ -1,11 +1,8 @@
-<div class="employee-details">
-  <p class="name">{{ employee?.name }}</p>
-  <p class="department">{{ employee?.department }}</p>
-  <p class="email">{{ employee?.email }}</p>
-
-  <ul class="equipments">
-    @for (item of employee?.equipments; track $index) {
-      <li>{{ item }}</li>
-    }
-  </ul>
+<div class="page-container">
+  @if(isLoading()) {
+    <div>Loading...</div>
+  }
+  @if (employee(); as employee) {
+    <app-employee-details [employee]="employee"></app-employee-details>
+  }
 </div>

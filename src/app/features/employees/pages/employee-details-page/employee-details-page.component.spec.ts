@@ -1,30 +1,30 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
-
 import { EmployeeDetailsPageComponent } from './employee-details-page.component';
 import { mockEmployees } from '../../../../shared/testing/test-data/mock-employees';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
-import { computed } from '@angular/core';
+import { computed, signal } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { EmployeeDetailsComponent } from '../../components/employee-details/employee-details.component';
 
 describe('EmployeeDetailsPageComponent', () => {
   let component: EmployeeDetailsPageComponent;
   let fixture: ComponentFixture<EmployeeDetailsPageComponent>;
   let mockEmployeeStateService: {
-    employees: any;
     setCurrentEmployee: jasmine.Spy;
     currentEmployee: any;
+    isLoading: any;
   };
 
   beforeEach(async () => {
     mockEmployeeStateService = {
-      employees: computed(() => mockEmployees),
       setCurrentEmployee: jasmine.createSpy('setCurrentEmployee'),
-      currentEmployee: computed(() => mockEmployees[0]),
+      currentEmployee: signal(mockEmployees[0]),
+      isLoading: signal(false),
     };
 
     await TestBed.configureTestingModule({
-      imports: [EmployeeDetailsPageComponent],
+      imports: [EmployeeDetailsPageComponent, EmployeeDetailsComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -47,37 +47,42 @@ describe('EmployeeDetailsPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get employee id from route params on init', () => {
+  it('should display employee-details component when employee exists', () => {
+    const employeeDetails = fixture.debugElement.query(
+      By.directive(EmployeeDetailsComponent)
+    );
+
+    expect(employeeDetails).toBeTruthy();
+    expect(employeeDetails.componentInstance.employee()).toEqual(
+      mockEmployees[0]
+    );
+  });
+
+  it('should not display employee-details component when employee is null', () => {
+    mockEmployeeStateService.currentEmployee.set(null);
+    fixture.detectChanges();
+
+    const employeeDetails = fixture.debugElement.query(
+      By.directive(EmployeeDetailsComponent)
+    );
+
+    expect(employeeDetails).toBeFalsy();
+  });
+
+  it('should call setCurrentEmployee with the id from route params', () => {
     expect(mockEmployeeStateService.setCurrentEmployee).toHaveBeenCalledWith(
       mockEmployees[0].id
     );
   });
 
-  it('should call setCurrentEmployee with the correct id', () => {
-    // Reset the spy count since ngOnInit already called it once
-    mockEmployeeStateService.setCurrentEmployee.calls.reset();
+  it('should show loading state when isLoading is true', () => {
+    mockEmployeeStateService.isLoading.set(true);
+    fixture.detectChanges();
 
-    // Trigger ngOnInit again
-    component.ngOnInit();
-
-    expect(mockEmployeeStateService.setCurrentEmployee).toHaveBeenCalledWith(
-      mockEmployees[0].id
+    // TODO: fix selector
+    const loadingElement = fixture.nativeElement.querySelector(
+      'div.page-container > div'
     );
-    expect(mockEmployeeStateService.setCurrentEmployee).toHaveBeenCalledTimes(
-      1
-    );
-  });
-
-  it('should display the employee details', () => {
-    const employeeDetailsName = fixture.nativeElement.querySelector('.employee-details .name');
-    const emmployeeDetailsDepartment = fixture.nativeElement.querySelector('.employee-details .department');
-    const employeeDetailsEmail = fixture.nativeElement.querySelector('.employee-details .email');
-    const employeeEquipment = fixture.nativeElement.querySelectorAll('.employee-details .equipments li');
-
-    expect(employeeDetailsName.textContent).toContain(mockEmployees[0].name);
-    expect(emmployeeDetailsDepartment.textContent).toContain(mockEmployees[0].department);
-    expect(employeeDetailsEmail.textContent).toContain(mockEmployees[0].email);
-    expect(employeeEquipment.length).toBe(mockEmployees[0].equipments.length);
-    expect(employeeEquipment[0].textContent).toContain(mockEmployees[0].equipments[0]);
+    expect(loadingElement.textContent).toContain('Loading...');
   });
 });

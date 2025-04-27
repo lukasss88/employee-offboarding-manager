@@ -1,5 +1,5 @@
 <mat-tab-group>
   <mat-tab label="Employee">
-    <app-employee-list [employees]="employees"></app-employee-list>
+    <app-employee-list [employees]="employees()" (rowClick)="handleRowClick($event)"></app-employee-list>
   </mat-tab>
 </mat-tab-group>

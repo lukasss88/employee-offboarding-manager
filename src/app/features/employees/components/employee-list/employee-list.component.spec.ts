@@ -18,16 +18,11 @@ describe('EmployeeListComponent', () => {
   });
 
   it('should show employee list', () => {
-    const employeeList =
-      fixture.nativeElement.querySelectorAll('tr.mat-mdc-row');
-    expect(employeeList.length).toBe(mockEmployees.length);
+    const employeeRows = queryEmployeeRows();
+    expect(employeeRows.length).toBe(mockEmployees.length);
 
-    const firstEmployeeName = fixture.nativeElement.querySelector(
-      'tr.mat-mdc-row td.mat-column-name'
-    );
-    const secondEmployeeName = fixture.nativeElement.querySelectorAll(
-      'tr.mat-mdc-row td.mat-column-name'
-    )[1];
+    const firstEmployeeName = queryNameCellAt(0);
+    const secondEmployeeName = queryNameCellAt(1);
 
     expect(firstEmployeeName.textContent).toContain(mockEmployees[0].name);
     expect(secondEmployeeName.textContent).toContain(mockEmployees[1].name);
@@ -36,18 +31,34 @@ describe('EmployeeListComponent', () => {
   it('shhould show empty placheholder when no employees', () => {
     fixture.componentRef.setInput('employees', []);
     fixture.detectChanges();
-    const employeeList = fixture.nativeElement.querySelector(
-      'tr.mat-mdc-no-data-row'
-    );
-    expect(employeeList.textContent).toContain('No employees found');
+    const emptyRow = queryEmptyRow();
+    expect(emptyRow.textContent).toContain('No employees found');
   });
 
   it('should emit rowClick output when row is clicked', () => {
-    const firstRow = fixture.nativeElement.querySelector('tr.mat-mdc-row');
+    const firstRow = queryFirstRow();
     const rowClickSpy = spyOn(component.rowClick, 'emit');
 
     firstRow.click();
 
     expect(rowClickSpy).toHaveBeenCalledWith(mockEmployees[0].id);
   });
+
+  function queryEmployeeRows() {
+    return fixture.nativeElement.querySelectorAll('tr.mat-mdc-row');
+  }
+
+  function queryNameCellAt(index: number) {
+    return fixture.nativeElement.querySelectorAll(
+      'tr.mat-mdc-row td.mat-column-name'
+    )[index];
+  }
+
+  function queryEmptyRow() {
+    return fixture.nativeElement.querySelector('tr.mat-mdc-no-data-row');
+  }
+
+  function queryFirstRow() {
+    return fixture.nativeElement.querySelector('tr.mat-mdc-row');
+  }
 });

@@ -32,26 +32,31 @@ describe('OffboardingModalComponent', () => {
   });
 
   it('should have a title', () => {
-    const title = fixture.debugElement.query(By.css('h2'));
+    const title = queryTitle();
     expect(title.nativeElement.textContent).toBe('Offboard');
   });
 
   it('should close the dialog with form value when form is submitted', () => {
     const testFormValue = { name: 'Test value' };
-    const formComponent = fixture.debugElement.query(
-      By.directive(OffboardingFormComponent)
-    ).componentInstance;
+    const formComponent = queryFormComponent();
 
     formComponent.formSubmit.emit(testFormValue);
     expect(dialogRef.close).toHaveBeenCalledWith(testFormValue);
   });
 
   it('should close the dialog when form is cancelled', () => {
-    const formComponent = fixture.debugElement.query(
-      By.directive(OffboardingFormComponent)
-    ).componentInstance;
+    const formComponent = queryFormComponent();
 
     formComponent.formCancel.emit();
     expect(dialogRef.close).toHaveBeenCalled();
   });
+
+  function queryTitle() {
+    return fixture.debugElement.query(By.css('h2'));
+  }
+
+  function queryFormComponent() {
+    return fixture.debugElement.query(By.directive(OffboardingFormComponent))
+      .componentInstance;
+  }
 });

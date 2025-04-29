@@ -29,9 +29,7 @@ describe('SearchBarComponent', () => {
   });
 
   it('should bind input value to the term signal', () => {
-    const inputElement = fixture.debugElement.query(
-      By.css('input.search-input')
-    ).nativeElement;
+    const inputElement = queryInputElement();
 
     inputElement.value = 'test search';
     inputElement.dispatchEvent(new Event('input'));
@@ -43,9 +41,7 @@ describe('SearchBarComponent', () => {
 
   it('should emit termChange event when input value changes', () => {
     const termChangeSpy = spyOn(component.termChange, 'emit');
-    const inputElement = fixture.debugElement.query(
-      By.css('input.search-input')
-    ).nativeElement;
+    const inputElement = queryInputElement();
 
     inputElement.value = 'new search term';
     inputElement.dispatchEvent(new Event('input'));
@@ -54,4 +50,9 @@ describe('SearchBarComponent', () => {
 
     expect(termChangeSpy).toHaveBeenCalledWith('new search term');
   });
+
+  function queryInputElement() {
+    return fixture.debugElement.query(By.css('input.search-input'))
+      .nativeElement;
+  }
 });

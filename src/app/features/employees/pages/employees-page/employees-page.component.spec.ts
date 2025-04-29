@@ -43,17 +43,13 @@ describe('EmployeesPageComponent', () => {
   });
 
   it('should display EmployeeList Component with employees', () => {
-    const employeeList = fixture.debugElement.query(
-      By.directive(EmployeeListComponent)
-    );
+    const employeeList = queryEmployeeList();
     expect(employeeList).toBeTruthy();
     expect(employeeList.componentInstance.employees()).toEqual(mockEmployees);
   });
 
   it('should navigate to employee details when row is clicked', () => {
-    const employeeList = fixture.debugElement.query(
-      By.directive(EmployeeListComponent)
-    );
+    const employeeList = queryEmployeeList();
     const employeeListInstance = employeeList.componentInstance;
 
     employeeListInstance.rowClick.emit(mockEmployees[0].id);
@@ -65,17 +61,13 @@ describe('EmployeesPageComponent', () => {
   });
 
   it('should render the search bar component', () => {
-    const searchBar = fixture.debugElement.query(
-      By.directive(SearchBarComponent)
-    );
+    const searchBar = querySearchBar();
     expect(searchBar).toBeTruthy();
   });
 
   it('should update searchTerm when search event is emitted', () => {
     const testSearchTerm = 'test search';
-    const searchBar = fixture.debugElement.query(
-      By.directive(SearchBarComponent)
-    );
+    const searchBar = querySearchBar();
 
     expect(component.searchTerm()).toBe('');
 
@@ -85,15 +77,13 @@ describe('EmployeesPageComponent', () => {
   });
 
   it('should filter employees based on searchTerm', () => {
-    const searchBar = fixture.debugElement.query(
-      By.directive(SearchBarComponent)
-    );
+    const searchBar = querySearchBar();
 
     searchBar.componentInstance.termChange.emit('John');
     fixture.detectChanges();
 
-    const rows = fixture.debugElement.queryAll(By.css('tr.mat-mdc-row'));
-    expect(rows.length).toBe(1); 
+    const rows = queryTableRows();
+    expect(rows.length).toBe(1);
     const nameCell = rows[0].query(By.css('td.mat-column-name'));
     expect(nameCell.nativeElement.textContent.trim()).toBe('John Doe');
   });
@@ -105,7 +95,7 @@ describe('EmployeesPageComponent', () => {
     component.handleSearch('');
     fixture.detectChanges();
 
-    const rows = fixture.debugElement.queryAll(By.css('tr.mat-mdc-row'));
+    const rows = queryTableRows();
     expect(rows.length).toBe(mockEmployees.length);
   });
 
@@ -113,12 +103,26 @@ describe('EmployeesPageComponent', () => {
     component.handleSearch('NonExistentEmployee');
     fixture.detectChanges();
 
-    const noDataRow = fixture.debugElement.query(
-      By.css('tr.mat-mdc-no-data-row')
-    );
+    const noDataRow = queryNoDataRow();
     expect(noDataRow).toBeTruthy();
     expect(noDataRow.nativeElement.textContent.trim()).toContain(
       'No employees found'
     );
   });
+
+  function queryEmployeeList() {
+    return fixture.debugElement.query(By.directive(EmployeeListComponent));
+  }
+
+  function querySearchBar() {
+    return fixture.debugElement.query(By.directive(SearchBarComponent));
+  }
+
+  function queryTableRows() {
+    return fixture.debugElement.queryAll(By.css('tr.mat-mdc-row'));
+  }
+
+  function queryNoDataRow() {
+    return fixture.debugElement.query(By.css('tr.mat-mdc-no-data-row'));
+  }
 });

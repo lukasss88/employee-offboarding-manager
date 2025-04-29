@@ -33,13 +33,9 @@ describe('EmployeeDetailsComponent', () => {
   });
 
   it('should display employee details correctly', () => {
-    const nameElement = fixture.debugElement.query(By.css('h1'));
-    const departmentElement = fixture.debugElement.query(
-      By.css('.detail-row:nth-child(2) .value')
-    );
-    const emailElement = fixture.debugElement.query(
-      By.css('.detail-row:nth-child(3) .value')
-    );
+    const nameElement = queryNameElement();
+    const departmentElement = queryDepartmentElement();
+    const emailElement = queryEmailElement();
 
     expect(nameElement.nativeElement.textContent).toContain(
       mockEmployees[0].name
@@ -53,7 +49,7 @@ describe('EmployeeDetailsComponent', () => {
   });
 
   it('should have a back link to employees page', () => {
-    const backLink = fixture.debugElement.query(By.css('.back-link'));
+    const backLink = queryBackLink();
     expect(backLink.attributes['routerLink']).toBe('/employees');
   });
 
@@ -61,12 +57,34 @@ describe('EmployeeDetailsComponent', () => {
     it('should emit requestOffboarding event', () => {
       const requestOffboardingSpy = spyOn(component.requestOffboarding, 'emit');
 
-      const offboardButton = fixture.debugElement.query(
-        By.css('#offboard-button')
-      );
+      const offboardButton = queryOffboardButton();
       offboardButton.nativeElement.click();
 
       expect(requestOffboardingSpy).toHaveBeenCalled();
     });
   });
+
+  function queryNameElement() {
+    return fixture.debugElement.query(By.css('h1'));
+  }
+
+  function queryDepartmentElement() {
+    return fixture.debugElement.query(
+      By.css('.detail-row:nth-child(2) .value')
+    );
+  }
+
+  function queryEmailElement() {
+    return fixture.debugElement.query(
+      By.css('.detail-row:nth-child(3) .value')
+    );
+  }
+
+  function queryBackLink() {
+    return fixture.debugElement.query(By.css('.back-link'));
+  }
+
+  function queryOffboardButton() {
+    return fixture.debugElement.query(By.css('#offboard-button'));
+  }
 });

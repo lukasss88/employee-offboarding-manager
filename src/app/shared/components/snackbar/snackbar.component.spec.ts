@@ -38,19 +38,17 @@ describe('SnackbarComponent', () => {
   });
 
   it('should display the message from the data', () => {
-    const messageElement = fixture.debugElement.query(
-      By.css('.snackbar-container span')
-    );
+    const messageElement = queryMessageElement();
     expect(messageElement.nativeElement.textContent).toBe('Test message');
   });
 
   it('should display the action button with correct text', () => {
-    const buttonElement = fixture.debugElement.query(By.css('.close-button'));
+    const buttonElement = queryCloseButton();
     expect(buttonElement.nativeElement.textContent.trim()).toBe('Close');
   });
 
   it('should dismiss the snackbar when the action button is clicked', () => {
-    const buttonElement = fixture.debugElement.query(By.css('.close-button'));
+    const buttonElement = queryCloseButton();
     buttonElement.triggerEventHandler('click', null);
 
     expect(snackBarRefSpy.dismiss).toHaveBeenCalled();
@@ -58,9 +56,7 @@ describe('SnackbarComponent', () => {
 
   it('should apply success class when type is success', () => {
     expect(component.getTypeClass()).toBe('success');
-    const containerElement = fixture.debugElement.query(
-      By.css('.snackbar-container')
-    );
+    const containerElement = querySnackbarContainer();
     expect(containerElement.classes['success']).toBeTrue();
   });
 
@@ -78,4 +74,16 @@ describe('SnackbarComponent', () => {
       expect(component.getTypeClass()).toBe(type);
     }
   });
+
+  function queryMessageElement() {
+    return fixture.debugElement.query(By.css('.snackbar-container span'));
+  }
+
+  function queryCloseButton() {
+    return fixture.debugElement.query(By.css('.close-button'));
+  }
+
+  function querySnackbarContainer() {
+    return fixture.debugElement.query(By.css('.snackbar-container'));
+  }
 });

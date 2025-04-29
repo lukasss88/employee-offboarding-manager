@@ -80,9 +80,7 @@ describe('EmployeeDetailsPageComponent', () => {
   });
 
   it('should display employee-details component when employee exists', () => {
-    const employeeDetails = fixture.debugElement.query(
-      By.directive(EmployeeDetailsComponent)
-    );
+    const employeeDetails = queryEmployeeDetailsComponent();
 
     expect(employeeDetails).toBeTruthy();
     expect(employeeDetails.componentInstance.employee()).toEqual(
@@ -94,9 +92,7 @@ describe('EmployeeDetailsPageComponent', () => {
     mockEmployeeStateService.currentEmployee.set(null);
     fixture.detectChanges();
 
-    const employeeDetails = fixture.debugElement.query(
-      By.directive(EmployeeDetailsComponent)
-    );
+    const employeeDetails = queryEmployeeDetailsComponent();
 
     expect(employeeDetails).toBeFalsy();
   });
@@ -176,4 +172,8 @@ describe('EmployeeDetailsPageComponent', () => {
     );
     expect(navigateSpy).toHaveBeenCalledWith(['/employees']);
   });
+
+  function queryEmployeeDetailsComponent() {
+    return fixture.debugElement.query(By.directive(EmployeeDetailsComponent));
+  }
 });

@@ -42,8 +42,7 @@ describe('GlobalSpinnerComponent', () => {
   });
 
   it('should not display spinner when loading is false', () => {
-    const spinnerElement =
-      fixture.nativeElement.querySelector('.spinner-overlay');
+    const spinnerElement = querySpinnerOverlay();
     expect(spinnerElement).toBeNull();
   });
 
@@ -52,11 +51,18 @@ describe('GlobalSpinnerComponent', () => {
 
     fixture.detectChanges();
 
-    const spinnerElement =
-      fixture.nativeElement.querySelector('.spinner-overlay');
+    const spinnerElement = querySpinnerOverlay();
     expect(spinnerElement).toBeTruthy();
 
-    const matSpinner = fixture.nativeElement.querySelector('mat-spinner');
+    const matSpinner = queryMatSpinner();
     expect(matSpinner).toBeTruthy();
   });
+
+  function querySpinnerOverlay() {
+    return fixture.nativeElement.querySelector('.spinner-overlay');
+  }
+
+  function queryMatSpinner() {
+    return fixture.nativeElement.querySelector('mat-spinner');
+  }
 });

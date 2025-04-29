@@ -96,15 +96,19 @@ describe('OffboardingFormComponent', () => {
     it('should hide action buttons when showActions is false', () => {
       fixture.componentRef.setInput('showActions', false);
       fixture.detectChanges();
-      const actionButtons = fixture.debugElement.query(By.css('.form-actions'));
+      const actionButtons = queryActionButtons();
       expect(actionButtons).toBeNull();
     });
 
     it('should show action buttons when showActions is true', () => {
       fixture.componentRef.setInput('showActions', true);
       fixture.detectChanges();
-      const actionButtons = fixture.debugElement.query(By.css('.form-actions'));
+      const actionButtons = queryActionButtons();
       expect(actionButtons).toBeTruthy();
     });
   });
+
+  function queryActionButtons() {
+    return fixture.debugElement.query(By.css('.form-actions'));
+  }
 });

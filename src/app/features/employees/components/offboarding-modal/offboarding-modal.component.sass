@@ -1,5 +1,21 @@
-:host
-  display: block
+
+h2[mat-dialog-title]
+  margin: 0
+  padding: 16px 24px
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12)
 
 .modal-body
-  padding: 2em;
+  padding: 16px 24px
+  overflow-y: auto
+  flex: 1
+
+mat-dialog-actions
+  padding: 8px 24px
+  border-top: 1px solid rgba(0, 0, 0, 0.12)
+  
+  button
+    margin-left: 8px
+
+    &[color="primary"]
+      background-color: #f77f00
+      color: white

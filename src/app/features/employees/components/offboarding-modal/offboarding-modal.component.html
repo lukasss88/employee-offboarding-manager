@@ -1,9 +1,12 @@
-<div class="dialog-container">
-  <h2 mat-dialog-title>Offboard</h2>
-  <div class="modal-body">
-    <app-offboarding-form 
-      (formSubmit)="onSubmit($event)" 
-      (formCancel)="onCancel()">
-    </app-offboarding-form>
-  </div>
-</div>
+<h2 mat-dialog-title>Offboard</h2>
+<mat-dialog-content class="mat-typography">
+  <app-offboarding-form 
+    [showActions]="false"
+    (formSubmit)="onSubmit($event)" 
+    (formCancel)="onCancel()">
+  </app-offboarding-form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submitForm()">Confirm</button>
+</mat-dialog-actions>

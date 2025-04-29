@@ -13,6 +13,8 @@ import { EmployeeOffboardEvent } from '../../../../core/models/employee';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OffboardingModalComponent } from '../../components/offboarding-modal/offboarding-modal.component';
 
 @Component({
   selector: 'app-employee-details-page',
@@ -27,11 +29,29 @@ export class EmployeeDetailsPageComponent implements OnInit {
   router: Router = inject(Router);
   state = inject(EmployeeStateService);
   private snackbarService = inject(SnackbarService);
+  private dialog = inject(MatDialog);
   employee = this.state.currentEmployee;
 
   ngOnInit(): void {
     const employeeId = this.route.snapshot.params['id'];
     this.state.setCurrentEmployee(employeeId);
+  }
+
+  handleOpenOffboardingModal(): void {
+    const dialogRef = this.dialog.open(OffboardingModalComponent);
+
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+        const currentEmployee = this.employee();
+        if (result && currentEmployee) {
+          this.handleOffBoardEmployee({
+            id: currentEmployee.id,
+            request: result,
+          });
+        }
+      });
   }
 
   handleOffBoardEmployee(event: EmployeeOffboardEvent): void {

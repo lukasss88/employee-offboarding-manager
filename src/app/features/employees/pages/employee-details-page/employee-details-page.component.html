@@ -1,5 +1,9 @@
 <div class="page-container">
   @if (employee(); as employee) {
-    <app-employee-details [employee]="employee" (offBoardEmployee)="handleOffBoardEmployee($event)"></app-employee-details>
+    <app-employee-details 
+      [employee]="employee" 
+      (offBoardEmployee)="handleOffBoardEmployee($event)"
+      (requestOffboarding)="handleOpenOffboardingModal()">
+    </app-employee-details>
   }
 </div>

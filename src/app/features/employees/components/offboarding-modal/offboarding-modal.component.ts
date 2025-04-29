@@ -1,43 +1,20 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import {
-  MatDialogRef,
-  MatDialogModule,
-} from '@angular/material/dialog';
-import {
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { OffboardingFormService } from '../../services/offboarding-form.service';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { OffboardingFormComponent } from '../offboarding-form/offboarding-form.component';
 
 @Component({
   selector: 'app-offboarding-modal',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDialogModule,
-  ],
+  imports: [MatDialogModule, OffboardingFormComponent],
   templateUrl: './offboarding-modal.component.html',
   styleUrl: './offboarding-modal.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OffboardingModalComponent {
   readonly dialogRef = inject(MatDialogRef<OffboardingModalComponent>);
-  private formService = inject(OffboardingFormService);
 
-  form: FormGroup = this.formService.createForm();
-
-  onSubmit(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
-    } else {
-      this.formService.markFormGroupTouched(this.form);
-    }
+  onSubmit(formValue: any): void {
+    this.dialogRef.close(formValue);
   }
 
   onCancel(): void {

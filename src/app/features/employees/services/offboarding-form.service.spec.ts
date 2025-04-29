@@ -7,7 +7,7 @@ describe('OffboardingFormService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OffboardingFormService, FormBuilder]
+      providers: [OffboardingFormService, FormBuilder],
     });
     service = TestBed.inject(OffboardingFormService);
   });
@@ -35,32 +35,40 @@ describe('OffboardingFormService', () => {
     });
 
     it('should validate required fields', () => {
-      const requiredFields = ['receiver', 'email', 'phone', 'streetLine', 'city', 'postalCode', 'country'];
-      
-      requiredFields.forEach(field => {
+      const requiredFields = [
+        'receiver',
+        'email',
+        'phone',
+        'streetLine',
+        'city',
+        'postalCode',
+        'country',
+      ];
+
+      requiredFields.forEach((field) => {
         const control = form.get(field);
         expect(control?.errors?.['required']).toBeTruthy();
       });
-      
+
       expect(form.get('notes')?.errors?.['required']).toBeFalsy();
     });
 
     it('should validate email format', () => {
       const emailControl = form.get('email');
-      
+
       emailControl?.setValue('invalid-email');
       expect(emailControl?.errors?.['email']).toBeTruthy();
-      
+
       emailControl?.setValue('valid@email.com');
       expect(emailControl?.errors?.['email']).toBeFalsy();
     });
 
     it('should validate phone number format', () => {
       const phoneControl = form.get('phone');
-      
+
       phoneControl?.setValue('12345');
       expect(phoneControl?.errors?.['pattern']).toBeTruthy();
-      
+
       phoneControl?.setValue('123456789');
       expect(phoneControl?.errors?.['pattern']).toBeFalsy();
     });
@@ -69,14 +77,14 @@ describe('OffboardingFormService', () => {
   describe('markFormGroupTouched', () => {
     it('should mark all form controls as touched', () => {
       const form = service.createForm();
-      
-      Object.keys(form.controls).forEach(key => {
+
+      Object.keys(form.controls).forEach((key) => {
         expect(form.get(key)?.touched).toBeFalsy();
       });
-      
+
       service.markFormGroupTouched(form);
-      
-      Object.keys(form.controls).forEach(key => {
+
+      Object.keys(form.controls).forEach((key) => {
         expect(form.get(key)?.touched).toBeTruthy();
       });
     });

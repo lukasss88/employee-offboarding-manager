@@ -35,9 +35,13 @@
           <span>Item</span>
         </div>
         <div class="equipment-items">
-          <div class="equipment-item" *ngFor="let item of employee().equipments">
-            {{ item.name }}
-          </div>
+          @for (equipment of employee().equipments; track equipment.id) {
+            <div class="equipment-item">
+              {{ equipment.name }}
+            </div>
+          } @empty {
+            <div class="equipment-item">No equipment assigned</div>
+          }
         </div>
       </div>
     </mat-card-content>

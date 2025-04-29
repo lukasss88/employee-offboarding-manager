@@ -19,9 +19,13 @@
     <th mat-header-cell *matHeaderCellDef> Equipment </th> 
     <td mat-cell *matCellDef="let element"> 
       @if (element.equipments?.length) {
-        <span *ngFor="let equipment of element.equipments; let i = index">
-          {{ equipment.name }}{{ i < element.equipments.length - 1 ? ' , ' : '' }}
-        </span>
+        @for (equipment of element.equipments; track equipment.id; let idx = $index) {
+          <span>
+            {{ equipment.name }}{{ idx < element.equipments.length - 1 ? ' , ' : '' }}
+          </span>
+        } @empty {
+          <span>There are no items.</span>
+        }
       }
     </td>
   </ng-container>

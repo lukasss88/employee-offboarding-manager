@@ -4,14 +4,13 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import {
-  FormBuilder,
   FormGroup,
-  Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { OffboardingFormService } from '../../services/offboarding-form.service';
 
 @Component({
   selector: 'app-offboarding-modal',
@@ -29,37 +28,19 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class OffboardingModalComponent {
   readonly dialogRef = inject(MatDialogRef<OffboardingModalComponent>);
-  private fb = inject(FormBuilder);
+  private formService = inject(OffboardingFormService);
 
-  form: FormGroup = this.fb.group({
-    receiver: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.pattern('^[0-9]{9,}$')]],
-    streetLine: ['', Validators.required],
-    city: ['', Validators.required],
-    postalCode: ['', Validators.required],
-    country: ['', Validators.required],
-    notes: [''],
-  });
+  form: FormGroup = this.formService.createForm();
 
   onSubmit(): void {
     if (this.form.valid) {
       this.dialogRef.close(this.form.value);
     } else {
-      this.markFormGroupTouched(this.form);
+      this.formService.markFormGroupTouched(this.form);
     }
   }
 
   onCancel(): void {
     this.dialogRef.close();
-  }
-
-  private markFormGroupTouched(formGroup: FormGroup): void {
-    Object.values(formGroup.controls).forEach((control) => {
-      control.markAsTouched();
-      if (control instanceof FormGroup) {
-        this.markFormGroupTouched(control);
-      }
-    });
   }
 }

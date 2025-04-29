@@ -3,11 +3,14 @@ import { OffboardingModalComponent } from './offboarding-modal.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { OffboardingFormService } from '../../services/offboarding-form.service';
+import { FormGroup } from '@angular/forms';
 
 describe('OffboardingModalComponent', () => {
   let component: OffboardingModalComponent;
   let fixture: ComponentFixture<OffboardingModalComponent>;
   let dialogRef: jasmine.SpyObj<MatDialogRef<OffboardingModalComponent>>;
+  let formService: OffboardingFormService;
 
   beforeEach(async () => {
     dialogRef = jasmine.createSpyObj('MatDialogRef', ['close']);
@@ -16,11 +19,13 @@ describe('OffboardingModalComponent', () => {
       imports: [OffboardingModalComponent, BrowserAnimationsModule],
       providers: [
         { provide: MatDialogRef, useValue: dialogRef },
+        OffboardingFormService
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OffboardingModalComponent);
     component = fixture.componentInstance;
+    formService = TestBed.inject(OffboardingFormService);
     fixture.detectChanges();
   });
 
@@ -78,16 +83,10 @@ describe('OffboardingModalComponent', () => {
 
   describe('Form Submission', () => {
     it('should not close dialog when form is invalid', () => {
+      spyOn(formService, 'markFormGroupTouched');
       component.onSubmit();
       expect(dialogRef.close).not.toHaveBeenCalled();
-    });
-
-    it('should mark all fields as touched when submitting invalid form', () => {
-      component.onSubmit();
-
-      Object.keys(component.form.controls).forEach((key) => {
-        expect(component.form.get(key)?.touched).toBeTruthy();
-      });
+      expect(formService.markFormGroupTouched).toHaveBeenCalledWith(component.form);
     });
 
     it('should close dialog with form value when form is valid', () => {
@@ -112,11 +111,13 @@ describe('OffboardingModalComponent', () => {
 
   describe('Error Display', () => {
     it('should show validation messages when form is submitted with errors', () => {
+      spyOn(formService, 'markFormGroupTouched').and.callThrough();
       component.onSubmit();
       fixture.detectChanges();
 
       const errorElements = fixture.debugElement.queryAll(By.css('mat-error'));
       expect(errorElements.length).toBe(7);
+      expect(formService.markFormGroupTouched).toHaveBeenCalled();
     });
 
     it('should not show validation messages initially', () => {

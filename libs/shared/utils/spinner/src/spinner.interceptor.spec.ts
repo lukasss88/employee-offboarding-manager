@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import {
   HttpInterceptorFn,
   HttpRequest,
-  HttpHandlerFn,
   HttpEvent,
   HttpResponse,
 } from '@angular/common/http';

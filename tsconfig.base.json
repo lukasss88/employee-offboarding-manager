@@ -17,11 +17,12 @@
     "module": "ES2022",
     "paths": {
       "@employee-offboarding/shared/ui": ["shared/src/index.ts"],
-      "@shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@shared/utils/spinner": ["libs/shared/utils/spinner/src/index.ts"],
+      "@shared/models": ["libs/shared/models/src/index.ts"],
       "@shared/pipes": ["libs/shared/pipes/src/index.ts"],
       "@shared/testing": ["libs/shared/testing/src/index.ts"],
-      "@shared/models": ["libs/shared/models/src/index.ts"],
+      "@shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@shared/utils/spinner": ["libs/shared/utils/spinner/src/index.ts"],
+      "@shared/utils/http": ["libs/shared/utils/http/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

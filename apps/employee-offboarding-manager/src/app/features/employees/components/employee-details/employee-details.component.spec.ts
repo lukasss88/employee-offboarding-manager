@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmployeeDetailsComponent } from './employee-details.component';
-import { mockEmployees } from '../../../../shared/testing/test-data/mock-employees';
+import { mockEmployees } from '@shared/testing';
 import { provideRouter } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';

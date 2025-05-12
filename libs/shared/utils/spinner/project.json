@@ -36,6 +36,14 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "tsConfig": "libs/shared/utils/spinner/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/utils/spinner/karma.conf.js",
+        "polyfills": ["zone.js", "zone.js/testing"]
+      }
     }
   }
 }

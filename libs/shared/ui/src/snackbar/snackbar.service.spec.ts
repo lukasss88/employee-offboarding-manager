@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   SnackbarComponent,
   SnackbarData,
-} from '../components/snackbar/snackbar.component';
+} from './snackbar.component';
 
 describe('SnackbarService', () => {
   let service: SnackbarService;

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmployeeListComponent } from './employee-list.component';
-import { mockEmployees } from '../../../../shared/testing/test-data/mock-employees';
+import { mockEmployees } from '@shared/testing';
 
 describe('EmployeeListComponent', () => {
   let component: EmployeeListComponent;

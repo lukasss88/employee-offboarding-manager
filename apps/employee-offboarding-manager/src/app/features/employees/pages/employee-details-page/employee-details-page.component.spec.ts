@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, provideRouter, Router } from '@angular/router';
 import { EmployeeDetailsPageComponent } from './employee-details-page.component';
-import { mockEmployees } from '../../../../shared/testing/test-data/mock-employees';
+import { mockEmployees } from '@shared/testing';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
 import { signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { EmployeeDetailsComponent } from '../../components/employee-details/employee-details.component';
 import { of } from 'rxjs';
 import { EmployeeOffboardEvent } from '../../../../core/models/employee';
-import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { SnackbarService } from '@shared/ui';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { OffboardingModalComponent } from '../../components/offboarding-modal/offboarding-modal.component';
 

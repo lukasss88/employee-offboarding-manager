@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { EmployeeStateService } from './employee-state.service';
 import { EmployeeService } from './employee.service';
 import { of } from 'rxjs';
-import { mockEmployees } from '../../shared/testing/test-data/mock-employees';
+import { mockEmployees } from '@shared/testing';
 
 describe('EmployeeStateService', () => {
   let service: EmployeeStateService;

@@ -79,6 +79,7 @@
       "executor": "@angular-devkit/build-angular:karma",
       "options": {
         "polyfills": ["zone.js", "zone.js/testing"],
+        "watch": false,
         "tsConfig": "apps/employee-offboarding-manager/tsconfig.spec.json",
         "inlineStyleLanguage": "sass",
         "assets": [

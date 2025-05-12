@@ -7,16 +7,12 @@ import {
 import { EmployeeListComponent } from '../../components/employee-list/employee-list.component';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
 import { Router } from '@angular/router';
-import { EmployeeFilterPipe } from '../../../../shared/pipes/employee-filter.pipe';
+import { EmployeeFilterPipe } from '@shared/pipes';
 import { SearchBarComponent } from '@shared/ui';
 
 @Component({
   selector: 'app-employees-page',
-  imports: [
-    EmployeeListComponent,
-    EmployeeFilterPipe,
-    SearchBarComponent,
-  ],
+  imports: [EmployeeListComponent, EmployeeFilterPipe, SearchBarComponent],
   templateUrl: './employees-page.component.html',
   styleUrls: ['./employees-page.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,

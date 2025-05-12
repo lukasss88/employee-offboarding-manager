@@ -1,12 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmployeesPageComponent } from './employees-page.component';
-import { of } from 'rxjs';
-import { mockEmployees } from '../../../../shared/testing/test-data/mock-employees';
+import { mockEmployees } from '@shared/testing';
 import { By } from '@angular/platform-browser';
 import { EmployeeListComponent } from '../../components/employee-list/employee-list.component';
 import { Router } from '@angular/router';
-import { SearchBarComponent } from '../../../../shared/components/search-bar/search-bar.component';
-import { EmployeeFilterPipe } from '../../../../shared/pipes/employee-filter.pipe';
+import { SearchBarComponent } from '@shared/ui';
+import { EmployeeFilterPipe } from '@shared/pipes';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { signal } from '@angular/core';

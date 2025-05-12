@@ -47,7 +47,7 @@ export class EmployeeDetailsPageComponent implements OnInit {
         const currentEmployee = this.employee();
         if (result && currentEmployee) {
           this.handleOffBoardEmployee({
-            id: currentEmployee.id,
+            id: currentEmployee.id, 
             request: result,
           });
         }

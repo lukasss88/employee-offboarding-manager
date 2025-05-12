@@ -4,7 +4,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController } from '@angular/common/http/testing';
 import { API_URL } from '../tokens/api.token';
 import { Employee, EmployeeOffboardRequest } from '../models/employee';
-import { mockEmployees } from '../../shared/testing/test-data/mock-employees';
+import { mockEmployees } from '@shared/testing';
 import { httpErrorInterceptor } from '../interceptors/http-error.interceptor';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 

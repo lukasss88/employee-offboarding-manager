@@ -1,5 +1,5 @@
 import { EmployeeFilterPipe } from './employee-filter.pipe';
-import { mockEmployees } from '../testing/test-data/mock-employees';
+import { mockEmployees } from '@shared/testing';
 
 describe('EmployeeFilterPipe', () => {
   let pipe: EmployeeFilterPipe;

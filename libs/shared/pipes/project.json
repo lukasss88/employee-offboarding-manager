@@ -1,0 +1,21 @@
+{
+  "name": "pipes",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/pipes/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "tsConfig": "libs/shared/pipes/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/pipes/karma.conf.js",
+        "polyfills": ["zone.js", "zone.js/testing"]
+      }
+    }
+  }
+}

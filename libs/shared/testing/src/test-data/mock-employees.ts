@@ -1,4 +1,4 @@
-import { Employee } from '../../../core/models/employee';
+import { Employee } from '@shared/models';
 
 export const mockEmployees: Employee[] = [
   {

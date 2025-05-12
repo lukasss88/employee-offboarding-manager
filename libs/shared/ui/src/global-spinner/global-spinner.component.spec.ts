@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GlobalSpinnerComponent } from './global-spinner.component';
-import { SpinnerService } from '../../../core/services/spinner.service';
+import { SpinnerService } from '@shared/utils/spinner';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Signal, signal } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';

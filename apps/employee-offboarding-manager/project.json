@@ -1,0 +1,104 @@
+{
+  "name": "employee-offboarding-manager",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "sass"
+    }
+  },
+  "sourceRoot": "apps/employee-offboarding-manager/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "options": {
+        "outputPath": "dist/apps/employee-offboarding-manager",
+        "index": "apps/employee-offboarding-manager/src/index.html",
+        "browser": "apps/employee-offboarding-manager/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/employee-offboarding-manager/tsconfig.app.json",
+        "inlineStyleLanguage": "sass",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/employee-offboarding-manager/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/employee-offboarding-manager/src/assets",
+            "output": "assets"
+          }
+        ],
+        "styles": [
+          "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/employee-offboarding-manager/src/styles.sass"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kB",
+              "maximumError": "8kB"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "employee-offboarding-manager:build:production"
+        },
+        "development": {
+          "buildTarget": "employee-offboarding-manager:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "polyfills": ["zone.js", "zone.js/testing"],
+        "tsConfig": "apps/employee-offboarding-manager/tsconfig.spec.json",
+        "inlineStyleLanguage": "sass",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/employee-offboarding-manager/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/employee-offboarding-manager/src/assets",
+            "output": "assets"
+          }
+        ],
+        "styles": [
+          "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/employee-offboarding-manager/src/styles.sass"
+        ],
+        "scripts": [],
+        "karmaConfig": "apps/employee-offboarding-manager/karma.conf.js"
+      }
+    }
+  }
+}

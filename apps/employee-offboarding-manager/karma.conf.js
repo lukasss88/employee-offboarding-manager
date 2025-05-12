@@ -1,11 +1,8 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-const { join } = require('path');
-const { constants } = require('karma');
-
-module.exports = () => {
-  return {
+module.exports = function (config) {
+  config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
@@ -22,22 +19,27 @@ module.exports = () => {
         // for example, you can disable the random execution with `random: false`
         // or set a specific seed with `seed: 4321`
       },
-      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+      captureConsole: true, // Add this line to capture console logs
     },
     jasmineHtmlReporter: {
       suppressAll: true, // removes the duplicated traces
     },
     coverageReporter: {
-      dir: join(__dirname, './coverage'),
+      dir: require('path').join(
+        __dirname,
+        './coverage/employee-offboarding-manager'
+      ),
       subdir: '.',
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
     },
     reporters: ['progress', 'kjhtml'],
-    port: 9876,
-    colors: true,
-    logLevel: constants.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: true,
-  };
+    browsers: ['ChromeHeadless'],
+    browserConsoleLogOptions: {
+      // Add this configuration
+      level: 'log',
+      format: '%b %T: %m',
+      terminal: true,
+    },
+    restartOnFileChange: true,
+  });
 };

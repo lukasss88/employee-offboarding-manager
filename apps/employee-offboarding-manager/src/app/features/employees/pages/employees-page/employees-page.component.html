@@ -1,0 +1,15 @@
+<div class="employees-container">
+  <div class="header-row">
+    <div class="tab-header">
+      <div class="tab-item active">Employees</div>
+    </div>
+    <div class="search-container">
+      <app-search-bar (termChange)="handleSearch($event)"></app-search-bar>
+    </div>
+  </div>
+  <app-employee-list
+    [employees]="employees() | employeeFilter : searchTerm()"
+    (rowClick)="handleRowClick($event)"
+  >
+  </app-employee-list>
+</div>

@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   SnackbarComponent,
   SnackbarData,
-} from '../components/snackbar/snackbar.component';
+} from './snackbar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,8 @@ export class SnackbarService {
 
   showSuccess(
     message: string,
-    action: string = 'Close',
-    duration: number = 50000
+    action = 'Close',
+    duration = 50000
   ): void {
     this.showSnackbar(
       {

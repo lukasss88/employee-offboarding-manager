@@ -12,7 +12,7 @@ import { EmployeeDetailsComponent } from '../../components/employee-details/empl
 import { EmployeeOffboardEvent } from '../../../../core/models/employee';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { SnackbarService } from '@shared/ui';
 import { MatDialog } from '@angular/material/dialog';
 import { OffboardingModalComponent } from '../../components/offboarding-modal/offboarding-modal.component';
 

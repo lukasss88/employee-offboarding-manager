@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { SpinnerService } from '../../../core/services/spinner.service';
+import { SpinnerService } from '@shared/utils/spinner';
 
 @Component({
-  selector: 'app-global-spinner',
+  selector: 'lib-global-spinner',
   standalone: true,
   imports: [CommonModule, MatProgressSpinnerModule],
   template: `

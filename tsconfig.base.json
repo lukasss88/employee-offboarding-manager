@@ -16,7 +16,9 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "@employee-offboarding/shared/ui": ["shared/src/index.ts"]
+      "@employee-offboarding/shared/ui": ["shared/src/index.ts"],
+      "@shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@shared/utils/spinner": ["libs/shared/utils/spinner/src/index.ts"],
     },
     "baseUrl": ".",
     "rootDir": "."

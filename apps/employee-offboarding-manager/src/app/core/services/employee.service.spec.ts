@@ -5,7 +5,7 @@ import { HttpTestingController } from '@angular/common/http/testing';
 import { API_URL } from '../tokens/api.token';
 import { Employee, EmployeeOffboardRequest } from '../models/employee';
 import { mockEmployees } from '@shared/testing';
-import { httpErrorInterceptor } from '../interceptors/http-error.interceptor';
+import { httpErrorInterceptor } from '@shared/utils/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('EmployeeService', () => {

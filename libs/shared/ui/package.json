@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0"
+    "@angular/core": "^19.2.0",
+    "@angular/material": "*",
+    "@angular/forms": "*",
+    "@utils/spinner": "^0.0.1"
   },
   "sideEffects": false
 }

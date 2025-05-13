@@ -6,7 +6,8 @@
     "start": "nx serve employee-offboarding-manager --host 0.0.0.0 --port 4200",
     "build": "nx build",
     "watch": "nx build --watch --configuration development",
-    "test": "nx test"
+    "test": "nx test",
+    "lint": "nx run-many --target=lint --all"
   },
   "private": true,
   "dependencies": {

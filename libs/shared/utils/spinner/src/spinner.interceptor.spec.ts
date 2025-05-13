@@ -51,7 +51,9 @@ describe('spinnerInterceptor', () => {
       let completed = false;
 
       interceptor(req, () => of(httpEvent)).subscribe({
-        next: () => {},
+        next: (event) => {
+          expect(event).toEqual(httpEvent);
+        },
         complete: () => {
           completed = true;
         },
@@ -75,11 +77,12 @@ describe('spinnerInterceptor', () => {
           observer.error(error);
         });
       }).subscribe({
-        next: () => {},
         error: () => {
           hasErrored = true;
         },
-        complete: () => {},
+        complete: () => {
+          expect(hasErrored).toBeTrue();
+        },
       });
 
       expect(spinnerService.show).toHaveBeenCalled();

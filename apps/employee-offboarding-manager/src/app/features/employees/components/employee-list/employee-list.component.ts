@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { Employee, EmployeeId } from '../../../../core/models/employee';
+import { Employee, EmployeeId } from '@shared/models';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 

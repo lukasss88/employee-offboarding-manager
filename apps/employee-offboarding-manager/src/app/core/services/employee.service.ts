@@ -5,8 +5,8 @@ import {
   Employee,
   EmployeeId,
   EmployeeOffboardRequest,
-} from '../models/employee';
-import { Observable, map } from 'rxjs';
+} from '@shared/models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

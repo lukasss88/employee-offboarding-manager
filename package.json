@@ -1,5 +1,5 @@
 {
-  "name": "employee-offboarding-manager",
+  "name": "employee-offboarding-manager-monorepo",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

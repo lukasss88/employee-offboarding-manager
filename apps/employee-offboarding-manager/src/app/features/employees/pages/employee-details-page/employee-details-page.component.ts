@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeStateService } from '../../../../core/services/employee-state.service';
 import { CommonModule } from '@angular/common';
 import { EmployeeDetailsComponent } from '../../components/employee-details/employee-details.component';
-import { EmployeeOffboardEvent } from '../../../../core/models/employee';
+import { EmployeeOffboardEvent } from '@shared/models';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarService } from '@shared/ui';

@@ -1,5 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { Employee, EmployeeOffboardRequest } from '../models/employee';
+import { Employee, EmployeeOffboardRequest } from '@shared/models';
 import { EmployeeService } from './employee.service';
 import { tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

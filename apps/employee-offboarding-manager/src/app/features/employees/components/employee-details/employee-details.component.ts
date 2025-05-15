@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   input,
   output,
 } from '@angular/core';
@@ -13,7 +12,7 @@ import { RouterLink } from '@angular/router';
 import {
   Employee,
   EmployeeOffboardEvent,
-} from '../../../../core/models/employee';
+} from '@shared/models';
 
 @Component({
   selector: 'app-employee-details',

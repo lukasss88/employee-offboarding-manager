@@ -1,6 +1,6 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { Employee, EmployeeOffboardRequest } from '@shared/models';
-import { EmployeeService } from './employee.service';
+import { EmployeeService } from '@employee/data-access';
 import { tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 

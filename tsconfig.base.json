@@ -21,7 +21,8 @@
       "@shared/testing": ["libs/shared/testing/src/index.ts"],
       "@shared/ui": ["libs/shared/ui/src/index.ts"],
       "@shared/utils/spinner": ["libs/shared/utils/spinner/src/index.ts"],
-      "@shared/utils/http": ["libs/shared/utils/http/src/index.ts"]
+      "@shared/utils/http": ["libs/shared/utils/http/src/index.ts"],
+      "@employee/data-access": ["libs/employee/data-access/src/index.ts"],
     },
     "baseUrl": ".",
     "rootDir": "."

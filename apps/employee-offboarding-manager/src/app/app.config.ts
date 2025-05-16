@@ -5,7 +5,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { httpErrorInterceptor } from '@shared/utils/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { DataService } from './data/data.service';
+import { DataService } from '@employee/data-access';
 import { spinnerInterceptor } from '@shared/utils/spinner';
 
 export const appConfig: ApplicationConfig = {
